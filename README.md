@@ -242,4 +242,4 @@ If you want to keep improving this repository as a resume-ready project, the rec
 
 ## License
 
-No standalone license is currently included in the repository. Add one later if you plan to publish the project as open source.
+This project is licensed under the MIT License. See the `LICENSE` file for details.
