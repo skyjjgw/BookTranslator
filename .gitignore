@@ -41,6 +41,8 @@ tmp/
 # Secrets and local config overrides
 .env
 .env.*
+config.local.yaml
+config.private.yaml
 
 # Binary and office files generated during local experiments
 *.docx
@@ -56,3 +58,4 @@ tmp/
 !test/**
 !fonts/
 !fonts/**
+!config.example.yaml

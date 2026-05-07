@@ -1,0 +1,8 @@
+model_type: "deepseek"
+model_name: "deepseek-chat"
+input_file: "test/test_table.pdf"
+file_format: "md"
+source_language: "en"
+target_language: "zh"
+pages: null
+apikey: "your_api_key_here"
