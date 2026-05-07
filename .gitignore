@@ -1,0 +1,58 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Build and distribution
+build/
+dist/
+*.egg-info/
+
+# Test and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local runtime files
+uploads/
+outputs/
+temp/
+tmp/
+
+# Secrets and local config overrides
+.env
+.env.*
+
+# Binary and office files generated during local experiments
+*.docx
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+
+# Keep sample assets in repository test folders if explicitly needed
+!test/
+!test/**
+!fonts/
+!fonts/**

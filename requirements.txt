@@ -1,0 +1,11 @@
+langchain
+langchain-community
+openai
+pdfplumber
+pandas
+reportlab
+loguru
+PyYAML
+openpyxl
+matplotlib
+python-docx
