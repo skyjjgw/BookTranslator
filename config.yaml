@@ -6,4 +6,4 @@ source_language: "en"
 target_language: "zh"
 pages: null
 #apikey: "openai"
-apikey: "sk-b07b793217f8474c8a21f67430d161ab"
+apikey: "your-api"
