@@ -211,15 +211,6 @@ Current output support includes:
 - table-header terminology memory
 - checkpoint-based resume recovery
 
-## Known Limitations
-
-This project is still in an early stage and currently has several limitations:
-
-- Mainly supports standard PDF files, with weak support for scanned documents
-- Runs as a local script rather than a production service
-- Does not yet include semantic retrieval or full RAG-powered QA
-- Does not yet provide a task queue, workflow tracking, or evaluation pipeline
-- Does not yet have a formal test suite
 
 ## License
 
