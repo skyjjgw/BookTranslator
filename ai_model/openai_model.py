@@ -1,5 +1,6 @@
 from .model import Model
 from langchain.chat_models import init_chat_model
+from BookTranslator.utils.log_utils import log
 
 class OpenAIModel(Model):
     def __init__(self, model,api_key):
@@ -8,7 +9,7 @@ class OpenAIModel(Model):
 
 
     def create_llm(self):
-        print("初始化模型")
+        log.info(f"初始化 OpenAI 模型: {self.model_name}")
         return init_chat_model(
             model=self.model_name,
             api_key=self.api_key

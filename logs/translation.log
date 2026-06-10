@@ -3853,3 +3853,7 @@ End of the table document.
 2026-05-03 14:39:05 | DEBUG    | BookTranslator.translator.book_translation:book_translator:38 - 翻译之后的内容：[["姓名","年龄","城市","职业"],["爱丽丝","24","纽约","工程师"],["鲍勃","30","洛杉矶","设计师"],["查理","28","芝加哥","教师"]]，翻译状态：True
 2026-05-03 14:39:05 | DEBUG    | BookTranslator.translator.file_writer:save_book_md:110 - md原文件路径是test/test_table.pdf翻译之后的路径是test/test_table_translator.md
 2026-05-03 14:39:05 | INFO     | BookTranslator.translator.file_writer:save_book_md:140 - 翻译后的Markdown文件已保存到：test/test_table_translator.md
+2026-05-07 15:17:05 | DEBUG    | BookTranslator.translator.pdf_parser:parse_pdf:51 - 提取文本内容：This is a test document with a table.
+Below is the table containing user data:
+End of the table document.
+2026-05-07 15:17:05 | DEBUG    | BookTranslator.translator.pdf_parser:parse_pdf:57 - 提取表格内容：[['Name', 'Age', 'City', 'Occupation'], ['Alice', '24', 'New York', 'Engineer'], ['Bob', '30', 'Los Angeles', 'Designer'], ['Charlie', '28', 'Chicago', 'Teacher']]

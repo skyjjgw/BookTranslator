@@ -31,15 +31,16 @@ def parse_pdf(file_path,pages):
             # 提取文本
             raw_text = pdf_page.extract_text()
             # 提取表格
-            tables = pdf_page.extract_tables()
+            tables = pdf_page.extract_tables() or []
 
             # 在raw_text删掉表格内容
             #三维数组
-            for table in tables:
-                for row in table:
-                    for cell in row:
-                            raw_text = raw_text.replace(cell, "")
-            print(raw_text)
+            if raw_text:
+                for table in tables:
+                    for row in table:
+                        for cell in row:
+                            if cell:
+                                raw_text = raw_text.replace(cell, "")
 
             if raw_text:
                 lines = raw_text.splitlines()

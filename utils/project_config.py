@@ -1,3 +1,4 @@
+import os
 import yaml
 from .argument_utils import ArgumentUtils
 
@@ -25,17 +26,32 @@ class ProjectConfig:
             args_utils = ArgumentUtils()
             self._args = args_utils.parse_args()
         if self._config is None:
-            with open(self._args.config, 'r') as f:
-                config = yaml.safe_load(f)
-                # print(config)
-        overridden={}
+            config = self._load_yaml(self._args.config)
+            private_config = self._load_yaml("config.private.yaml")
+            config.update(private_config)
+
+        overridden = {}
         for key, value in vars(self._args).items():#vars()函数返回当前作用域的变量字典
-            # print(key, value)
            if key in config and value is not None:
                 overridden[key] = value
         config.update(overridden)
-        # print(config)
+        config["apikey"] = self._resolve_api_key(config.get("apikey"))
         self._config = config
+
+    def _load_yaml(self, file_path):
+        if not os.path.exists(file_path):
+            return {}
+        with open(file_path, "r", encoding="utf-8") as f:
+            return yaml.safe_load(f) or {}
+
+    def _resolve_api_key(self, fallback):
+        return (
+            os.getenv("BOOKTRANSLATOR_API_KEY")
+            or os.getenv("DEEPSEEK_API_KEY")
+            or os.getenv("OPENAI_API_KEY")
+            or fallback
+        )
+
     def __getattr__(self, item):
         """
         获取配置项

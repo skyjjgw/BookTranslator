@@ -1,11 +1,12 @@
 from langchain_core.prompts import SystemMessagePromptTemplate, HumanMessagePromptTemplate, ChatPromptTemplate
+from BookTranslator.utils.log_utils import log
 
 
 
 
 class Model:
         def create_llm(self):
-                print("初始化模型")
+                log.info("初始化模型")
 
 
 
