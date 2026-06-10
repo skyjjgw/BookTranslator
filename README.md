@@ -221,37 +221,6 @@ This project is still in an early stage and currently has several limitations:
 - Does not yet provide a task queue, workflow tracking, or evaluation pipeline
 - Does not yet have a formal test suite
 
-## Roadmap
-
-This repository will gradually evolve into an **Enterprise Document Processing Agent** with the following capabilities:
-
-### Phase 1: Service Layer
-
-- Add FastAPI-based upload and result query APIs
-- Support batch tasks and basic task status management
-
-### Phase 2: OCR and Complex Document Parsing
-
-- Support scanned PDFs and image documents
-- Add OCR and layout-aware parsing
-
-### Phase 3: RAG and Document QA
-
-- Index processed documents into a knowledge base
-- Add semantic retrieval
-- Support document-grounded question answering and summarization
-
-### Phase 4: Workflow and Evaluation
-
-- Introduce LangGraph-based orchestration
-- Add async jobs, retries, and human review hooks
-- Add quality metrics and token cost tracking
-
-For a detailed learning and upgrade plan, see:
-
-- `enterprise_doc_agent_plan/`
-
-
 ## License
 
 This project is licensed under the MIT License. See the `LICENSE` file for details.
