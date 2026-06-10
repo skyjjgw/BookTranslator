@@ -11,7 +11,7 @@ class TranslationChain:
     def __init__(self, model):
        # 提示词 模型
        self.langchain = model.make_prompt() | model.create_llm()
-    def run(self,content,source_language,target_language):
+    def run(self,content,source_language,target_language,memory_context=""):
         """翻译文本内容
         :param content: 需要翻译的文本内容
         :param source_language: 原语言
@@ -20,6 +20,8 @@ class TranslationChain:
         """
         if content.content_type == ContentType.TEXT:
             text = f"请按照要求翻译以下文本内容：{content.original}"
+            if memory_context:
+                text = f"{memory_context}\n\n{text}"
             result = self.langchain.invoke({
                 'source_language': source_language,
                 'target_language': target_language,
@@ -34,6 +36,8 @@ class TranslationChain:
                 "示例格式：[[\"col1\",\"col2\"],[\"value1\",\"value2\"]]。\n"
                 f"原始表格：{content.get_origianl_to_string()}"
             )
+            if memory_context:
+                text = f"{memory_context}\n\n{text}"
             result = self.langchain.invoke({
                 'source_language': source_language,
                 'target_language': target_language,

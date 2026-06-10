@@ -9,6 +9,7 @@ At its current stage, the project works as a document translation pipeline. In t
 - Extracts both text blocks and table content from PDF files
 - Supports model switching between `DeepSeek` and `OpenAI`
 - Routes different content types through different processing logic
+- Adds lightweight agent memory for translation reuse, terminology consistency, and checkpoint recovery
 - Exports translated results to both `PDF` and `Markdown`
 - Provides a reusable foundation for a future enterprise document agent
 
@@ -20,8 +21,10 @@ The current processing flow includes:
 2. Initialize the selected LLM
 3. Parse PDF text and tables
 4. Route each content block through the translation chain
-5. Write translated content back into the document object
-6. Export the final result as PDF or Markdown
+5. Retrieve terminology and translation memory when available
+6. Persist checkpoints and translation memory after each content block
+7. Write translated content back into the document object
+8. Export the final result as PDF or Markdown
 
 ## Architecture
 
@@ -86,12 +89,27 @@ Responsibilities:
 - Support content type enums for text, image, and table
 - Leave room for future OCR and multimodal extensions
 
+### 5. Lightweight Agent Memory Layer
+
+Directory: `memory/`
+
+Main file:
+
+- `memory_store.py`
+
+Responsibilities:
+
+- Store exact translation memory for repeated content reuse
+- Persist table-header terminology memory for translation consistency
+- Save page/content-level checkpoints for resume-from-failure recovery
+
 ## Project Structure
 
 ```text
 BookTranslator/
   ai_model/              # Model abstraction layer
   book/                  # Document object model
+  memory/                # Lightweight agent memory layer
   translator/            # Parsing, translation, and export pipeline
   utils/                 # Config, logging, and utility helpers
   fonts/                 # Fonts for PDF output
@@ -112,6 +130,7 @@ BookTranslator/
 - pandas
 - reportlab
 - loguru
+- sqlite3
 - PyYAML
 
 ## Quick Start
@@ -143,6 +162,10 @@ source_language: "en"
 target_language: "zh"
 pages: null
 apikey: "your_api_key"
+memory_enabled: true
+memory_db_path: "data/booktranslator_memory.db"
+memory_domain: "general"
+resume_from_checkpoint: true
 ```
 
 Field descriptions:
@@ -155,6 +178,10 @@ Field descriptions:
 - `target_language`: target language
 - `pages`: page limit, `null` means process all pages
 - `apikey`: provider API key
+- `memory_enabled`: enable or disable lightweight agent memory
+- `memory_db_path`: SQLite path for memory persistence
+- `memory_domain`: domain tag used for terminology memory
+- `resume_from_checkpoint`: resume from the latest successful content block
 
 ### 3. Run the Project
 
@@ -180,6 +207,9 @@ Current output support includes:
 - paragraph translation
 - table translation to Markdown table format
 - translated PDF reconstruction
+- exact translation memory reuse
+- table-header terminology memory
+- checkpoint-based resume recovery
 
 ## Known Limitations
 
@@ -187,7 +217,7 @@ This project is still in an early stage and currently has several limitations:
 
 - Mainly supports standard PDF files, with weak support for scanned documents
 - Runs as a local script rather than a production service
-- Does not yet include a terminology base or RAG-powered QA
+- Does not yet include semantic retrieval or full RAG-powered QA
 - Does not yet provide a task queue, workflow tracking, or evaluation pipeline
 - Does not yet have a formal test suite
 

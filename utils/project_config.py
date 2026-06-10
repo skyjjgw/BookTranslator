@@ -35,6 +35,8 @@ class ProjectConfig:
            if key in config and value is not None:
                 overridden[key] = value
         config.update(overridden)
+        self._normalize_bool(config, "memory_enabled")
+        self._normalize_bool(config, "resume_from_checkpoint")
         config["apikey"] = self._resolve_api_key(config.get("apikey"))
         self._config = config
 
@@ -52,6 +54,11 @@ class ProjectConfig:
             or fallback
         )
 
+    def _normalize_bool(self, config, key):
+        value = config.get(key)
+        if isinstance(value, str):
+            config[key] = value.lower() == "true"
+
     def __getattr__(self, item):
         """
         获取配置项
@@ -68,4 +75,3 @@ if __name__ == "__main__":
     # 测试单例模式
     p1 = ProjectConfig()
     p1.initialize()
-

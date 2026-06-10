@@ -37,6 +37,8 @@ uploads/
 outputs/
 temp/
 tmp/
+data/
+*.db
 
 # Secrets and local config overrides
 .env

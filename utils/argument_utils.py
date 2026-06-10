@@ -57,6 +57,32 @@ class ArgumentUtils:
             help="翻译目标语言（必填），例如 Chinese"
         )
 
+        self.parser.add_argument(
+            "--memory_enabled",
+            type=str,
+            choices=["true", "false"],
+            help="是否启用 Agent memory（true / false）"
+        )
+
+        self.parser.add_argument(
+            "--memory_db_path",
+            type=str,
+            help="memory SQLite 数据库路径"
+        )
+
+        self.parser.add_argument(
+            "--memory_domain",
+            type=str,
+            help="memory 领域标签，例如 medical / finance / general"
+        )
+
+        self.parser.add_argument(
+            "--resume_from_checkpoint",
+            type=str,
+            choices=["true", "false"],
+            help="是否开启断点恢复（true / false）"
+        )
+
     def parse_args(self):
         """
         解析命令行参数

@@ -7,3 +7,7 @@ target_language: "zh"
 pages: null
 #apikey: "openai"
 apikey: "your-api"
+memory_enabled: true
+memory_db_path: "data/booktranslator_memory.db"
+memory_domain: "general"
+resume_from_checkpoint: true

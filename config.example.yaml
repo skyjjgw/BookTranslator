@@ -6,3 +6,7 @@ source_language: "en"
 target_language: "zh"
 pages: null
 apikey: "your_api_key_here"
+memory_enabled: true
+memory_db_path: "data/booktranslator_memory.db"
+memory_domain: "general"
+resume_from_checkpoint: true
