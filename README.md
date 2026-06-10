@@ -251,24 +251,6 @@ For a detailed learning and upgrade plan, see:
 
 - `enterprise_doc_agent_plan/`
 
-## Potential Business Use Cases
-
-After future upgrades, the project can be adapted to:
-
-- internal enterprise knowledge document processing and search
-- foreign trade material translation and restructuring
-- bidding, proposal, and government documentation workflows
-- training material digitization and document QA
-
-## Suggested Next Steps
-
-If you want to keep improving this repository as a resume-ready project, the recommended order is:
-
-1. Finalize `requirements.txt`
-2. Add `FastAPI` and turn the script into a service
-3. Add OCR support
-4. Add knowledge retrieval and QA
-5. Add evaluation metrics and automated tests
 
 ## License
 
